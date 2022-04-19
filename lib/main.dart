@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/myProvider.dart';
+import 'sampleScreen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const SampleScreen());
 }
 
 class MyApp extends StatelessWidget {
