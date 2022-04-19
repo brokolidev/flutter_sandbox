@@ -35,7 +35,7 @@ class SampleScreenProvider extends StatelessWidget {
                 foregroundColor: MaterialStateProperty.all<Color>(Colors.blue),
               ),
               onPressed: () {
-                provider.sessionKey = '12334';
+                provider.fetchApiKey();
               },
               child: const Text('TextButton'),
             ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SampleProvider extends ChangeNotifier {
@@ -11,12 +11,17 @@ class SampleProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<SharedPreferences?> fetchSessionKeyFromSharedPreferences() async {
-    return await SharedPreferences.getInstance();
+  Future<String?> fetchApiKey() async {
+    var url = Uri.parse('//localhost/api/login');
+    // var response =
+    //     await http.post(url, body: {'name': 'doodle', 'color': 'blue'});
+    var response = await http.get(url);
+    _sessionKey = response.body;
+    notifyListeners();
+    return response.body;
   }
 
-  SampleProvider() {
-    fetchSessionKeyFromSharedPreferences();
-    notifyListeners();
+  Future<SharedPreferences?> fetchSessionKeyFromSharedPreferences() async {
+    return await SharedPreferences.getInstance();
   }
 }
